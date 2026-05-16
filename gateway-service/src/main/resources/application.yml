@@ -1,0 +1,26 @@
+spring:
+   application:
+     name: gateway-service
+
+   config:
+     import: "optional:configserver:"
+         
+
+   #database connection details
+   datasource:
+     url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+     username: ${DB_USERNAME}
+     password: ${DB_PASSWORD}
+     driver-class-name: org.postgresql.Driver
+
+   #hibernate configuration details
+   jpa:
+     hibernate:
+       ddl-auto: validate 
+     show-sql: true 
+     properties:
+       hibernate:
+         format_sql: true
+       #hibernate 6 automatically selects the dialect for the database so not specified here
+server:
+   port: 8080

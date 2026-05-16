@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>4.0.6</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/> 
 	</parent>
 	<groupId>com.map_engine</groupId>
 	<artifactId>system</artifactId>
@@ -27,12 +27,11 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>25</java.version>
+		<java.version>21</java.version>
 		<grpc.version>1.77.1</grpc.version>
 		<protobuf-java.version>4.33.4</protobuf-java.version>
 		<spring-cloud.version>2025.1.1</spring-cloud.version>
 		<spring-grpc.version>1.0.3</spring-grpc.version>
-		<spring-modulith.version>2.0.6</spring-modulith.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -208,22 +207,6 @@
 			<artifactId>spring-integration-ws</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.modulith</groupId>
-			<artifactId>spring-modulith-events-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.modulith</groupId>
-			<artifactId>spring-modulith-starter-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.modulith</groupId>
-			<artifactId>spring-modulith-starter-jdbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.modulith</groupId>
-			<artifactId>spring-modulith-starter-jpa</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-messaging</artifactId>
 		</dependency>
@@ -247,21 +230,6 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.modulith</groupId>
-			<artifactId>spring-modulith-actuator</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.modulith</groupId>
-			<artifactId>spring-modulith-events-amqp</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.modulith</groupId>
-			<artifactId>spring-modulith-observability</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -404,11 +372,6 @@
 			<artifactId>spring-integration-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.modulith</groupId>
-			<artifactId>spring-modulith-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -416,13 +379,6 @@
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
 				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.modulith</groupId>
-				<artifactId>spring-modulith-bom</artifactId>
-				<version>${spring-modulith.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -503,6 +459,9 @@
 				<version>4.0.3</version>
 				<configuration>
 					<protoc>${protobuf-java.version}</protoc>
+					<sourceDirectories>
+           	 	 	 	  <sourceDirectory>${project.basedir}/../proto</sourceDirectory>
+        	 	 	 </sourceDirectories>
 					<binaryMavenPlugins>
 						<binaryMavenPlugin>
 							<groupId>io.grpc</groupId>
