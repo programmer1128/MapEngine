@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+// This determines the C++ namespace
+package mapengine.routing;
+
+// These determine the Java package structure
+option java_multiple_files = true;
+option java_package = "com.mapengine.gateway.routing.grpc";
+
+// 1. The Request from Java to C++
+message RouteRequest {
+    double start_lat = 1;
+    double start_lon = 2;
+    double end_lat = 3;
+    double end_lon = 4;
+}
+
+// 2. A single coordinate in the route array
+message Coordinate {
+    double lat = 1;
+    double lon = 2;
+}
+
+// 3. The Response from C++ back to Java
+message RouteResponse {
+    string status = 1; // e.g., "OK" or "NO_ROUTE_FOUND"
+    double distance_meters = 2;
+    int32 eta_seconds = 3;
+    repeated Coordinate polyline = 4; // The array of coordinates to draw on the map
+}
+
+// 4. The actual RPC Service interface
+service NavigationService {
+    rpc CalculateRoute (RouteRequest) returns (RouteResponse);
+}
